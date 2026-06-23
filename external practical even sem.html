@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odd or Even Checker</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        input {
+            padding: 10px;
+            width: 200px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Odd or Even Checker</h2>
+        <p>Enter a number below to check if it's odd or even.</p>
+        
+        <div class="input-group">
+            <input type="number" id="numberInput" placeholder="Enter a number..." required>
+            <button id="checkBtn">Check</button>
+        </div>
+
+        <div id="result" class="result-box hidden"></div>
+    </div>
+
+    <script >document.getElementById('checkBtn').addEventListener('click', checkOddOrEven);
+document.getElementById('numberInput').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        checkOddOrEven();
+    }
+});
+function checkOddOrEven() {
+    const inputField = document.getElementById('numberInput');
+    const resultDiv = document.getElementById('result');
+    const value = inputField.value;
+    if (value === "") {
+        resultDiv.textContent = "Please enter a valid number.";
+        resultDiv.className = "result-box odd"; 
+        return;
+    }
+
+    const number = parseInt(value, 10);
+    resultDiv.className = "result-box";
+    if (number % 2 === 0) {
+        resultDiv.textContent = `${number} is an EVEN number.`;
+        resultDiv.classList.add('even');
+    } else {
+        resultDiv.textContent = `${number} is an ODD number.`;
+        resultDiv.classList.add('odd');
+    }
+}
+</script>
+</body>
+</html>
